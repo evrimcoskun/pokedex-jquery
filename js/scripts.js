@@ -14,7 +14,7 @@ var pokemonRepository = (function($, window, document) {
   function addListItem(pokemon) {
     var pokemonList = $('.pokemon-list');
     var listItem = $('<li></li>');
-    var button = $('<button class="button-class">' + pokemon.name + '</button>');
+    var button = $('<button type="button" class="btn btn-light btn-lg btn-block text-left" data-toggle="modal" data-target="#modal-container">' + pokemon.name + '</button>');
     listItem.append(button);
     pokemonList.append(listItem);
     button.on('click', function() {
@@ -54,57 +54,40 @@ var pokemonRepository = (function($, window, document) {
   }
   
   function showModal(title, height, img) {
-
-    // Clear all existing modal content
-    modalContainer.html('');
-
-    var modal = $('<div class="modal"></div>');
-
-    // Add the new modal content
-    var closeButtonElement = $('<button class="modal-close">&times;</button>');
-    closeButtonElement.on('click', hideModal);
+    modalContainer.empty();
+    var modalDialog = $('<div class="modal-dialog modal-dialog-centered" role="document"></div>');
+    var modalContent = $('<div class="modal-content"></div>')
+    var modalBody = $('<div class="modal-body"></div>');
+    var modalTitle = $('<h5 class="modal-title">' + title + '</h5>');
+    var modalHeader = $('<div class="modal-header"></div>');
+    modalHeader.append(modalTitle);
+    modalContent.append(modalHeader);
     
-    var textContainerElement = $('<div class="modal-text"></div>');
     
-    var titleElement = $('<h1>' + title + '</h1>');
+    var nameElement = $('<h1>' + title + '</h1>');
+    var imageElement = $('<img class="modal-img" style="width:50%">');
+    imageElement.attr("src", img)
+    var heightElement = $('<p>height: ' + height + '</p>');
     
     var contentElement = $('<p></p>');
     if (height > 10) {
-      contentElement.html('height: ' + height + '<br>Wow, that\'s a big Pokemon!');
-    } else {
-      contentElement.text('height: ' + height);
+      contentElement.html('<br>Wow, that\'s a big Pokemon!');
     }
     
-    var imgElement = $('<img src="' + img + '" />')
-    
-    textContainerElement.append(titleElement);
-    textContainerElement.append(contentElement);
-    
-    
-    modal.append(closeButtonElement);
-    modal.append(imgElement);
-    modal.append(textContainerElement);
-    modalContainer.append(modal);
+    modalBody.append(imageElement);
+    modalBody.append(contentElement);
+    modalBody.append(heightElement);
+    modalContent.append(modalBody);
 
-    modalContainer.addClass('is-visible');
+    var modalFooter = $('<div class="modal-footer">');
+    var modalButton = $('<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>');
+    
+    modalFooter.append(modalButton);
+    modalContent.append(modalFooter);
+    modalDialog.append(modalContent);
+    modalContainer.append(modalDialog);
   }
-  
-  function hideModal() {
-    modalContainer.removeClass('is-visible');
-  }
-  
-  $(window).on('keydown', function(e) {
-    if (e.key === 'Escape' && modalContainer.hasClass('is-visible')) {
-      hideModal();  
-    }
-  });
-  
-  modalContainer.on('click', function(e) {
-    var target = $(e.target);
-    if (target.html() === modalContainer.html()) {
-      hideModal();
-    }
-  });
+
   
   return {
     getAll: getAll,
@@ -113,8 +96,7 @@ var pokemonRepository = (function($, window, document) {
     loadList: loadList,
     loadDetails: loadDetails,
     showDetails: showDetails,
-    showModal: showModal,
-    hideModal: hideModal
+    showModal: showModal
   };
   
 })(jQuery, window, document);

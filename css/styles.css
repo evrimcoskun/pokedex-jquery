@@ -1,21 +1,6 @@
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 16px;
-}
-
-body {
-  font-family: Arial, sans-serif;
-}
-
-h1 {
-  font-size: 1.5rem;
-}
-
-li {
+ li {
   list-style: none;
+  margin-bottom: 10px;
 }
 
 ul {
@@ -23,13 +8,10 @@ ul {
 }
 
 .container {
-  max-width: 360px;
-  margin: auto;
+  margin-top: 30px;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
-
+/*
 .button-class {
   width: 100%;
   font-size: 1rem;
@@ -50,7 +32,7 @@ ul {
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#modal-container {
+/* #modal-container {
   position: fixed;
   padding: 20px;
   box-sizing: border-box;
@@ -64,9 +46,9 @@ ul {
   display: none;
   text-align: center;
   border-radius: 5px;
-}
+} */
 
-.modal {
+/* .modal {
   margin: auto;
   position: relative;
   display: inline-block;
@@ -78,9 +60,9 @@ ul {
   width: 70%;
   max-width: 500px;
   text-align: left;
-}
+} */
 
-.modal-close {
+/* .modal-close {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -95,8 +77,8 @@ ul {
 
 .modal-text {
   display: inline-block;
-}
-
+} */
+/* 
 .modal h1 {
   margin-top: 0;
   padding-right: 10px;
@@ -108,8 +90,8 @@ ul {
 
 .modal img {
   display: inline-block;
-}
+} */
 
-#modal-container.is-visible {
+/* #modal-container.is-visible {
   display: grid;
-}
+} */
