@@ -1,4 +1,4 @@
-var pokemonRepository = (function($, window, document) {
+var pokemonRepository = (function($) {
   var pokemonList = [];
   var apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
   var modalContainer = $('#modal-container');
@@ -33,7 +33,9 @@ var pokemonRepository = (function($, window, document) {
         add(pokemon);
       });
     }).catch(function(error) {
+      /* eslint-disable no-console */
       console.error(error);
+      /* eslint-disable no-console */
     });
   }
   
@@ -43,7 +45,9 @@ var pokemonRepository = (function($, window, document) {
       pokemon.imageUrl = details.sprites.front_default;
       pokemon.height = details.height;
     }).catch(function(error) {
+      /* eslint-disable no-console */
       console.error(error);
+      /* eslint-disable no-console */
     });
   }
   
@@ -63,10 +67,8 @@ var pokemonRepository = (function($, window, document) {
     modalHeader.append(modalTitle);
     modalContent.append(modalHeader);
     
-    
-    var nameElement = $('<h1>' + title + '</h1>');
     var imageElement = $('<img class="modal-img" style="width:50%">');
-    imageElement.attr("src", img)
+    imageElement.attr('src', img)
     var heightElement = $('<p>height: ' + height + '</p>');
     
     var contentElement = $('<p></p>');
@@ -98,8 +100,9 @@ var pokemonRepository = (function($, window, document) {
     showDetails: showDetails,
     showModal: showModal
   };
-  
-})(jQuery, window, document);
+/* eslint-disable no-undef */
+})(jQuery);
+/* eslint-disable no-undef */
 
 pokemonRepository.loadList().then(function() {
   pokemonRepository.getAll().forEach(function(pokemon){
